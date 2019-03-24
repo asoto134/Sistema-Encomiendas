@@ -1,3 +1,5 @@
+
+
 --CREACION DE LA BASE DE DATOS
 IF EXISTS(SELECT 1 FROM MASTER.SYS.SYSDATABASES WHERE NAME ='DB_SISTEMA_ENCOMIENDAS')
 BEGIN
@@ -564,4 +566,192 @@ BEGIN
     ,Costo_Por_Kilo
   FROM 
     T_Categorias
+End;
+
+IF OBJECT_ID('sp_Listar_Direcciones') IS NOT NULL DROP PROCEDURE sp_Listar_Direcciones
+GO
+
+CREATE PROCEDURE sp_Listar_Direcciones
+AS
+BEGIN
+  SELECT
+    Id_Direccion
+    ,Provincia
+    ,Canton
+    ,Distrito
+	Direccion_Exacta
+  FROM 
+    T_Direcciones
+End;
+
+IF OBJECT_ID('sp_Listar_Estados') IS NOT NULL DROP PROCEDURE sp_Listar_Estados
+GO
+
+CREATE PROCEDURE sp_Listar_Estados
+AS
+BEGIN
+  SELECT
+    Id_Estado
+    ,Descripcion
+  FROM 
+    T_Estados
+End; 
+
+IF OBJECT_ID('sp_Listar_Paquetes') IS NOT NULL DROP PROCEDURE sp_Listar_Paquetes
+GO
+
+CREATE PROCEDURE sp_Listar_Paquetes
+AS
+BEGIN
+  SELECT
+    Id_Paquete
+    ,Descripcion
+	,Peso
+	,Id_Categoria
+	,Id_Estado
+	,Id_Sucursal
+	,Id_Persona
+	,Id_Recibo
+  FROM 
+    T_Paquetes
+End; 
+
+IF OBJECT_ID('sp_Listar_Personas') IS NOT NULL DROP PROCEDURE sp_Listar_Personas
+GO
+
+CREATE PROCEDURE sp_Listar_Personas
+AS
+BEGIN
+  SELECT
+    Id_Persona
+    ,Cedula
+	,Nombre
+	,Primer_Apellido
+	,Segundo_Apellido
+	,Email
+	,Telefono
+	,Usuario
+	,Contrasena
+	,Id_Direccion
+	,Super_Usuario
+	,Activo
+  FROM 
+    T_Personas
+End; 
+
+IF OBJECT_ID('sp_Listar_Privilegios') IS NOT NULL DROP PROCEDURE sp_Listar_Privilegios
+GO
+
+CREATE PROCEDURE sp_Listar_Privilegios
+AS
+BEGIN
+  SELECT
+    Id_Privilegio
+    ,Privilegio
+	,Descripcion
+  FROM 
+    T_Privilegios
+End; 
+
+IF OBJECT_ID('sp_Listar_Promociones') IS NOT NULL DROP PROCEDURE sp_Listar_Prmociones
+GO
+
+CREATE PROCEDURE sp_Listar_Promociones
+AS
+BEGIN
+  SELECT
+    Id_Promocion
+    ,Descripcion
+	,Monto
+	,Id_Persona
+  FROM 
+    T_Promociones
+End;
+
+IF OBJECT_ID('sp_Listar_Recibos') IS NOT NULL DROP PROCEDURE sp_Listar_Recibos
+GO
+
+CREATE PROCEDURE sp_Listar_Recibos
+AS
+BEGIN
+  SELECT
+    Id_Recibo
+    ,Sub_Total
+	,Impuesto
+	,Envio
+	,Total
+	,Pagado
+  FROM 
+    T_Recibos
+End; 
+
+IF OBJECT_ID('sp_Listar_Roles') IS NOT NULL DROP PROCEDURE sp_Listar_Roles
+GO
+
+CREATE PROCEDURE sp_Listar_Roles
+AS
+BEGIN
+  SELECT
+    Id_Rol
+    ,Rol
+	,Descripcion
+  FROM 
+    T_Roles
+End; 
+
+IF OBJECT_ID('sp_Listar_Roles_Personas') IS NOT NULL DROP PROCEDURE sp_Listar_Roles_Personas
+GO
+
+CREATE PROCEDURE sp_Listar_Roles_Personas
+AS
+BEGIN
+  SELECT
+    Id_Rol_Persona
+    ,Id_Rol
+	,Id_Persona
+  FROM 
+    T_Roles_Personas
+End;
+
+IF OBJECT_ID('sp_Listar_Roles_Privilegios') IS NOT NULL DROP PROCEDURE sp_Listar_Roles_Privilegios
+GO
+
+CREATE PROCEDURE sp_Listar_Roles_Privilegios
+AS
+BEGIN
+  SELECT
+    Id_Rol_Privilegio
+    ,Id_Rol
+	,Id_Privilegio
+  FROM 
+    T_Roles_Privilegios
+End;
+
+IF OBJECT_ID('sp_Listar_Sucursales') IS NOT NULL DROP PROCEDURE sp_Listar_Sucursales
+GO
+
+CREATE PROCEDURE sp_Listar_Sucursales
+AS
+BEGIN
+  SELECT
+    Id_Sucursal
+    ,Nombre
+	,Id_Direccion
+	,Activo
+  FROM 
+    T_Sucursales
+End;
+
+IF OBJECT_ID('sp_Listar_Tarjetas') IS NOT NULL DROP PROCEDURE sp_Listar_Tarjetas
+GO
+
+CREATE PROCEDURE sp_Listar_Tarjetas
+AS
+BEGIN
+  SELECT
+    Id_Tarjeta
+    ,Numero_tarjeta
+	,Id_Persona
+  FROM 
+    T_Tarjetas
 End;
